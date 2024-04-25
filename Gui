@@ -1,0 +1,126 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QLabel, QFileDialog, QPushButton, QTabWidget
+from PyQt5.QtGui import QPixmap, QImage
+import cv2
+from ultralytics import YOLO
+from PyQt5.QtCore import QThread, pyqtSignal
+
+class ModelWorker(QThread):
+    result_ready = pyqtSignal(str, QImage)
+
+    def __init__(self, model_name, model_path, image_path):
+        super(ModelWorker, self).__init__()
+        self.model_name = model_name
+        self.model_path = model_path
+        self.image_path = image_path
+
+    def run(self):
+        try:
+            model = YOLO(self.model_path)
+            image_data = cv2.imread(self.image_path)
+            results = model(image_data)
+            plot = results[0].plot()
+            height, width, channel = plot.shape
+            if height == 0 or width == 0:
+                print(f"Error: Processed image dimensions are invalid for {self.model_name}")
+                return
+            bytesPerLine = 3 * width
+            # Sonucu RGB formatına dönüştürerek QImage oluştur
+            qImg = QImage(plot.data, width, height, bytesPerLine, QImage.Format_RGB888).rgbSwapped()
+            self.result_ready.emit(self.model_name, qImg)
+        except Exception as e:
+            print(f"An error occurred while processing image with {self.model_name}: {str(e)}")
+
+class ModelPage(QWidget):
+    def __init__(self, model_name, parent=None):
+        super(ModelPage, self).__init__(parent)
+
+        self.model_name = model_name
+        self.source_filename = None
+        self.source_image_label = QLabel()
+        self.result_label = QLabel()
+
+        self.main_layout = QVBoxLayout()
+        self.main_layout.addWidget(self.source_image_label)
+        self.main_layout.addWidget(self.result_label)
+
+        self.setLayout(self.main_layout)
+
+    def set_image(self, image_path):
+        self.source_filename = image_path
+        pixmap = QPixmap(self.source_filename)
+        self.source_image_label.setPixmap(pixmap.scaledToWidth(400))
+
+    def process_image(self, image_path):
+        if image_path is None:
+            print('No image selected')
+            return
+
+        model_path = models[self.model_name]
+        self.worker = ModelWorker(self.model_name, model_path, image_path)
+        self.worker.result_ready.connect(self.display_result)
+        self.worker.start()
+
+    def display_result(self, model_name, qImg):
+        if model_name == self.model_name:
+            self.result_label.setPixmap(QPixmap.fromImage(qImg).scaledToWidth(400))
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+
+        self.setWindowTitle("Model Testing")
+
+        self.tab_widget = QTabWidget()
+
+        self.model_pages = {}
+        for model_name in models:
+            page = ModelPage(model_name)
+            self.tab_widget.addTab(page, model_name)
+            self.model_pages[model_name] = page
+
+        self.setCentralWidget(self.tab_widget)
+
+        self.select_image_button = QPushButton('Select Image')
+        self.select_image_button.clicked.connect(self.choose_image)
+
+        self.process_button = QPushButton('Process')
+        self.process_button.clicked.connect(self.process_all)
+
+        self.main_layout = QVBoxLayout()
+        self.main_layout.addWidget(self.select_image_button)
+        self.main_layout.addWidget(self.tab_widget)
+        self.main_layout.addWidget(self.process_button)
+
+        self.central_widget = QWidget()
+        self.central_widget.setLayout(self.main_layout)
+        self.setCentralWidget(self.central_widget)
+
+    def choose_image(self):
+        image_path, _ = QFileDialog.getOpenFileName(self, "Select Image")
+        if image_path:
+            for model_page in self.model_pages.values():
+                model_page.set_image(image_path)
+                model_page.process_image(image_path)
+
+    def process_all(self):
+        pass  # Bu düğmeye gerek yok çünkü tüm modelleri tek tek işliyoruz
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+
+    # Model isimleri ve dosya yolları
+    models = {
+        'type.pt': 'D:/Python/pythonProject/models/type.pt',
+        'streak.pt': 'D:/Python/pythonProject/models/streak.pt',
+        'regression_areas.pt': 'D:/Python/pythonProject/models/regression_areas.pt',
+        'pigment_network.pt': 'D:/Python/pythonProject/models/pigment_network.pt',
+        'dots.pt': 'D:/Python/pythonProject/models/dots.pt',
+        'blue-vihitish_veil.pt': 'D:/Python/pythonProject/models/blue-vihitish_veil.pt',
+        'asymetry.pt': 'D:/Python/pythonProject/models/asymetry.pt'
+    }
+
+    window = MainWindow()
+    window.show()
+
+    sys.exit(app.exec())
