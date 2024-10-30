@@ -6,7 +6,7 @@ Cilt kanseri tespiti için YOLOv8'in Colab ortamında hazırlanması ve eğitilm
 Veri seti olarak Pedro Hispano Hastanesi PH2 veri seti kullanılmıştır.
 Veri seti içerisindeki cilt lezyonu görüntüleri makesense ortamında etiketlenerek coco formatında txt dosyaları ve bu etiketlere ait görüntüler elde edilmiştir. Elde edilen bu etiketler ve görüntüler Data Augmentation kütüphanesi kullanılarak çoğaltılmıştır , veri seti çoğaltıldıktan sonra  colab ortamında Yolov8l modeli kullanılarak ,   cilt kanserinde kullanılan veri seti içerisinde sınıflar  için eğitilmiştir. Daha sonra eğitilen modeller PYQT5 kütüphanesi kullanılarak oluşturulan Gui üzerinde test edilmiştir.
 
-## EĞİTİM GÖRÜNTÜLERİ VE ARAYÜZ:
+## EĞİTİM GÖRÜNTÜLERİ:
 
 ![image](https://github.com/user-attachments/assets/ccfb5bd8-e747-41ce-ac41-d9bfebba418f)
 ![image](https://github.com/user-attachments/assets/09ad22df-15c9-418d-9095-b61d6c6a45aa)
@@ -16,6 +16,8 @@ Veri seti içerisindeki cilt lezyonu görüntüleri makesense ortamında etiketl
 ![image](https://github.com/user-attachments/assets/85fc2845-c6fa-41cd-9ab4-459cd6bf6783)
 ![image](https://github.com/user-attachments/assets/75d6277e-de9c-4c17-b707-0cbccc7645db)
 ![image](https://github.com/user-attachments/assets/73ed5dfd-cf32-49d9-bc41-b6db62c8f512)
+
+## KARAR DESTEK ARAYÜZÜ:
 ![image](https://github.com/user-attachments/assets/e9a166e3-5585-4f7c-b064-d39fcdde36b8)
 ![image](https://github.com/user-attachments/assets/2ef9b900-c003-4248-9c33-373615177d28)
 
