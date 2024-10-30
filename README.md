@@ -15,9 +15,10 @@ Veri seti içerisindeki cilt lezyonu görüntüleri makesense ortamında etiketl
 ![image](https://github.com/user-attachments/assets/78958f2b-7c99-460e-bb00-6af40a273161)
 ![image](https://github.com/user-attachments/assets/85fc2845-c6fa-41cd-9ab4-459cd6bf6783)
 ![image](https://github.com/user-attachments/assets/75d6277e-de9c-4c17-b707-0cbccc7645db)
-![image](https://github.com/user-attachments/assets/73ed5dfd-cf32-49d9-bc41-b6db62c8f512)
 
 ## KARAR DESTEK ARAYÜZÜ:
+
+![image](https://github.com/user-attachments/assets/73ed5dfd-cf32-49d9-bc41-b6db62c8f512)
 ![image](https://github.com/user-attachments/assets/e9a166e3-5585-4f7c-b064-d39fcdde36b8)
 ![image](https://github.com/user-attachments/assets/2ef9b900-c003-4248-9c33-373615177d28)
 
