@@ -10,17 +10,17 @@ The obtained labels and images were augmented using the Data Augmentation librar
 
 After augmenting the dataset, the YOLOv8l model was used in the Colab environment to train on the dataset used for skin cancer. (Veri seti çoğaltıldıktan sonra colab ortamında Yolov8l modeli kullanılarak, cilt kanserinde kullanılan veri seti içerisinde sınıflar için eğitilmiştir.)
 
-Subsequently, the trained models were tested on a GUI created using the PyQt5 library. (Daha sonra eğitilen modeller PYQT5 kütüphanesi kullanılarak oluşturulan GUI üzerinde test edilmiştir.)
+Subsequently, the trained models were tested on a GUI created using the PyQt5 library. (Daha sonra eğitilen modeller PyQt5 kütüphanesi kullanılarak oluşturulan GUI üzerinde test edilmiştir.)
 
 ## TRAINING IMAGES (EĞİTİM GÖRÜNTÜLERİ):
 
-![image](https://github.com/user-attachments/assets/ccfb5bd8-e747-41ce-ac41-d9bfebba418f)
-![image](https://github.com/user-attachments/assets/09ad22df-15c9-418d-9095-b61d6c6a45aa)
-![image](https://github.com/user-attachments/assets/38147ee0-cfda-4073-ad8b-7afd8b42e228)
-![image](https://github.com/user-attachments/assets/21e53a2b-ff5d-4c65-b751-4424f94c66fc)
-![image](https://github.com/user-attachments/assets/78958f2b-7c99-460e-bb00-6af40a273161)
-![image](https://github.com/user-attachments/assets/85fc2845-c6fa-41cd-9ab4-459cd6bf6783)
-![image](https://github.com/user-attachments/assets/75d6277e-de9c-4c17-b707-0cbccc7645db)
+| ![Image 1](https://github.com/user-attachments/assets/ccfb5bd8-e747-41ce-ac41-d9bfebba418f) | ![Image 2](https://github.com/user-attachments/assets/09ad22df-15c9-418d-9095-b61d6c6a45aa) |
+|---|---|
+| ![Image 3](https://github.com/user-attachments/assets/38147ee0-cfda-4073-ad8b-7afd8b42e228) | ![Image 4](https://github.com/user-attachments/assets/21e53a2b-ff5d-4c65-b751-4424f94c66fc) |
+| ![Image 5](https://github.com/user-attachments/assets/78958f2b-7c99-460e-bb00-6af40a273161) | ![Image 6](https://github.com/user-attachments/assets/85fc2845-c6fa-41cd-9ab4-459cd6bf6783) |
+| ![Image 7](https://github.com/user-attachments/assets/75d6277e-de9c-4c17-b707-0cbccc7645db) |  |
+
+
 
 ## DECISION SUPPORT INTERFACE(KARAR DESTEK ARAYÜZÜ):
 
